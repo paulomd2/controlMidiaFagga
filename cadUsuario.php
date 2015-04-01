@@ -55,7 +55,7 @@
                     $clientes = $objClienteDao->listaClientes();
 
                     foreach ($clientes as $cliente) {
-                        echo '<input type="checkbox" name="cliente" value="' . $cliente["idCliente"] . '" />';
+                        echo '<input type="checkbox" name="cliente" id="' . $cliente["idCliente"] . '" value="' . $cliente["idCliente"] . '" /> <label for="' . $cliente["idCliente"] . '"> ' . $cliente["nome"] . ' </label>';
                     }
                     ?>
                 </td>

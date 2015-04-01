@@ -15,8 +15,16 @@ class UsuarioCliente{
     public function getIdCliente(){
         return $this->idCliente;
     }
-    public function setIdCliente(array $idCliente){
-        $idCliente = $idCliente;
+    public function setIdCliente($idCliente){
+        $this->idCliente = $idCliente;
+    }
+    
+    
+    public function getDataCadastro(){
+        return $this->dataCadastros;
+    }
+    public function setDataCadastro($dataCadastro){
+        $this->dataCadastro = $dataCadastro;
     }
 }
 

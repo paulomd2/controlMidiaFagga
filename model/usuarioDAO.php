@@ -57,7 +57,9 @@ class UsuarioDAO extends Banco {
         $conexao = $this->abreConexao();
 
         if (empty($objUsuario)) {
-            $sql = "SELECT * FROM " . TBL_USUARIO;
+            $sql = "SELECT u.*
+                    FROM " . TBL_USUARIO . " u
+                        LEFT JOIN " . TBL_REL_USUARIO_CLIENTE . " uc ON u.idUsuario = uc.idUsuario";
 
             $banco = $conexao->query($sql);
 
@@ -66,7 +68,10 @@ class UsuarioDAO extends Banco {
                 $linhas[] = $linha;
             }
         } else {
-            $sql = "SELECT * FROM " . TBL_USUARIO . " WHERE idUsuario = " . $objUsuario->getIdUsuario();
+            $sql = "SELECT u.*, GROUP_CONCAT(uc.idCliente) AS cliente
+                        FROM " . TBL_USUARIO . " u
+                        LEFT JOIN " . TBL_REL_USUARIO_CLIENTE . " uc ON u.idUsuario = uc.idUsuario
+                            WHERE u.idUsuario = " . $objUsuario->getIdUsuario();
 
             $banco = $conexao->query($sql);
 
@@ -90,15 +95,14 @@ class UsuarioDAO extends Banco {
                ";
 
         $conexao->query($sql);
-        
+
         $id = $conexao->insert_id;
 
         return $id;
         $this->fechaConexao();
     }
-    
-    
-     public function altUsuario(Usuario $objUsuario) {
+
+    public function altUsuario(Usuario $objUsuario) {
         $conexao = $this->abreConexao();
 
         $sql = "UPDATE " . TBL_USUARIO . " SET
@@ -107,10 +111,22 @@ class UsuarioDAO extends Banco {
                 senha = '" . $objUsuario->getSenha() . "',
                 login = '" . $objUsuario->getLogin() . "',
                 nivel = '" . $objUsuario->getNivel() . "'
-                    WHERE idUsuario = ".$objUsuario->getIdUsuario()."
+                    WHERE idUsuario = " . $objUsuario->getIdUsuario() . "
                ";
 
         $conexao->query($sql);
+
+        $this->fechaConexao();
+    }
+
+    public function delUsuario(Usuario $objUsuario) {
+        $conexao = $this->abreConexao();
+
+        $sql1 = "DELETE FROM " . TBL_USUARIO . " WHERE idUsuario = " . $objUsuario->getIdUsuario();
+        $sql2 = "DELETE FROM " . TBL_REL_USUARIO_CLIENTE . " WHERE idUsuario = " . $objUsuario->getIdUsuario();
+
+        $conexao->query($sql1);
+        $conexao->query($sql2);
 
         $this->fechaConexao();
     }

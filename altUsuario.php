@@ -46,9 +46,15 @@
                 <td>
                     <select name="nivel" id="nivel">
                         <option value="">Selecione um nível...</option>
-                        <option value="1" <?php if($usuario['nivel'] == '1'){ echo 'selected'; } ?>>Administrador</option>
-                        <option value="2" <?php if($usuario['nivel'] == '2'){ echo 'selected'; } ?>>Editor</option>
-                        <option value="3" <?php if($usuario['nivel'] == '3'){ echo 'selected'; } ?>>Cliente</option>
+                        <option value="1" <?php if ($usuario['nivel'] == '1') {
+        echo 'selected';
+    } ?>>Administrador</option>
+                        <option value="2" <?php if ($usuario['nivel'] == '2') {
+        echo 'selected';
+    } ?>>Editor</option>
+                        <option value="3" <?php if ($usuario['nivel'] == '3') {
+        echo 'selected';
+    } ?>>Cliente</option>
                     </select><br />
                     <span id="spanNivel" class="erro"></span>
                 </td>
@@ -59,9 +65,15 @@
                     <?php
                     require_once 'model/clienteDAO.php';
                     $clientes = $objClienteDao->listaClientes();
+                    $usuarioCliente = explode(',', $usuario['cliente']);
 
                     foreach ($clientes as $cliente) {
-                        echo '<input type="checkbox" name="cliente" id="' . $cliente["idCliente"] . '" value="' . $cliente["idCliente"] . '" /> <label for="' . $cliente["idCliente"] . '"> ' . $cliente["nome"] . ' </label>';
+                        if(in_array($cliente['idCliente'], $usuarioCliente)) {
+                            $checked = 'checked';
+                        } else {
+                            $checked = '';
+                        }
+                        echo '<input type="checkbox" name="cliente" id="' . $cliente["idCliente"] . '" value="' . $cliente["idCliente"] . '" ' . $checked . ' /> <label for="' . $cliente["idCliente"] . '"> ' . $cliente["nome"] . ' </label>';
                     }
                     ?>
                 </td>

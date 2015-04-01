@@ -9,7 +9,7 @@ foreach ($usuarios as $usuario){
             <td>'.$usuario["email"].'</td>
             <td>'.$usuario["nivel"].'</td>
             <td><a href="altUsuario.php?id='.$usuario["idUsuario"].'">Alterar</a></td>
-            <td>Excluir</td>
+            <td><a href="javascript:delUsuario('.$usuario["idUsuario"].')">Excluir</a></td>
           </tr>
          ';
 }
