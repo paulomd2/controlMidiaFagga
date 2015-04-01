@@ -9,6 +9,7 @@ class Usuario{
     private $login;
     private $senha;
     private $nivel;
+    private $email;
     
     public function getIdUsuario(){
         return $this->idUsuario;
@@ -47,6 +48,14 @@ class Usuario{
     }
     public function setNivel($nivel){
         $this->nivel = seg($nivel);
+    }
+    
+    
+    public function getEmail(){
+        return $this->email;
+    }
+    public function setEmail($email){
+        $this->email = seg($email);
     }
 }
 
