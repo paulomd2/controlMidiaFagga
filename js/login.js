@@ -16,7 +16,7 @@ $(document).ready(function(){
               if(r == 0){
                   $("#spanLogin").html('Login e/ou Senha não conferem. Tente novamente !!!');
               }else{
-                  window.location = 'principal.php';
+                  window.location = r;
               }
           })
       }
