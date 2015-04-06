@@ -1,6 +1,6 @@
 <?php
-
 session_start();
+
 require_once '../include/funcoes.php';
 require_once '../model/usuarioDAO.php';
 require_once '../model/usuarioClienteDAO.php';

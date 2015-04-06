@@ -34,6 +34,7 @@ switch ($opcao) {
         $texto = $_POST['texto'];
         $idUsuario = $_SESSION['codigoAR'];
         $dataCadastro = date("Y-m-d H:i:s");
+        $idCliente = $_SESSION['cliente'];
 
         if ($_FILES['foto']['name'] != '') {
             $foto = uploadImagem();
