@@ -1,9 +1,9 @@
 <?php
 
 @session_start();
+require_once '../../model/banco.php';
 require_once '../model/comentarioDAO.php';
 require_once '../model/postDAO.php';
-@include_once '../include/funcoes.php';
 /*
   $acao = $_GET['acao'];
 

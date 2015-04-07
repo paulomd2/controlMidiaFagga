@@ -1,6 +1,6 @@
 <?php
 require_once 'bean/usuarioCliente.php';
-require_once '../model/banco.php';
+require_once '../../model/banco.php';
 
 class UsuarioClienteDAO extends Banco {
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../include/funcoes.php';
+//@include_once '../include/funcoes.php';
 require_once '../model/usuarioDAO.php';
 require_once '../model/usuarioClienteDAO.php';
 
@@ -15,7 +15,7 @@ switch ($opcao) {
         $clientes = rtrim($_POST['clientes'], ',');
 
         $clientes = explode(',', $clientes);
-
+        
         $objUsuario->setNome($nome);
         $objUsuario->setEmail($email);
         $objUsuario->setLogin($login);

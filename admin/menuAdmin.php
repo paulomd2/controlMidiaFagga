@@ -6,5 +6,8 @@
         <li>
             <a href="verClientes.php">Clientes</a>
         </li>
+        <li>
+            <a href="principal.php">Posts</a>
+        </li>
     </ul> 
 </nav>

@@ -1,7 +1,8 @@
 <?php
 
 include_once 'bean/cliente.php';
-require_once '../model/banco.php';
+@include_once '../../model/banco.php';
+@include_once '../model/banco.php';
 
 class ClienteDAO extends Banco {
 

@@ -11,16 +11,16 @@ function clienteString() {
     $("input[name='cliente']").each(function (index, value) {
         if ($(this).prop("checked"))
         {
-            cliente += $(this).val()+',';
+            cliente += $(this).val() + ',';
         }
     });
-    
+
     return cliente;
 }
 
-function delUsuario(id){
-    if(confirm("Você tem certeza que deseja excluir esse Usuário?") === true){
-        $.post('control/usuarioControle.php',{opcao:'delUsuario', idUsuario:id});
+function delUsuario(id) {
+    if (confirm("Você tem certeza que deseja excluir esse Usuário?") === true) {
+        $.post('control/usuarioControle.php', {opcao: 'delUsuario', idUsuario: id});
         $("#listaUsuarios").load("verUsuariosAjax.php");
     }
 }
@@ -33,7 +33,7 @@ $(document).ready(function () {
         var login = $("#login");
         var nivel = $("#nivel");
         var clientes = clienteString();
-        
+
         $(".erro").html('');
         if (nome.val().trim() == '') {
             nome.focus();
@@ -54,7 +54,10 @@ $(document).ready(function () {
             nivel.focus();
             $("#spanNivel").html('Você deve selecionar um nível!');
         } else {
-            $.post('control/usuarioControle.php', {opcao: 'cadUsuario', nome: nome.val(), email: email.val(), senha: senha.val(), login: login.val(), nivel: nivel.val(), clientes:clientes});
+            $.post('control/usuarioControle.php', {opcao: 'cadUsuario', nome: nome.val(), email: email.val(), senha: senha.val(), login: login.val(), nivel: nivel.val(), clientes: clientes},
+            function (r) {
+                console.log(r);
+            });
             window.location = 'admin.php';
         }
     });
@@ -92,7 +95,7 @@ $(document).ready(function () {
             nivel.focus();
             $("#spanNivel").html('Você deve selecionar um nível!');
         } else {
-            $.post('control/usuarioControle.php', {opcao: 'altUsuario', nome: nome.val(), email: email.val(), senha: senha, login: login.val(), nivel: nivel.val(), idUsuario: idUsuario, clientes:clientes});
+            $.post('control/usuarioControle.php', {opcao: 'altUsuario', nome: nome.val(), email: email.val(), senha: senha, login: login.val(), nivel: nivel.val(), idUsuario: idUsuario, clientes: clientes});
         }
     });
 });
