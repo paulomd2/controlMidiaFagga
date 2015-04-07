@@ -2,18 +2,19 @@
 
 require_once 'banco.php';
 require_once 'bean/cliente.php';
+require_once 'bean/usuarioCliente.php';
 
 class ClienteDAO extends Banco {
 
-    public function listaClientes(Cliente $objCliente) {
+    public function listaClientes(UsuarioCliente $objUsuarioCliente) {
         $conexao = $this->abreConexao();
 
         $sql = "
-                SELECT c.*, GROUP_CONCAT(uc.idCliente)
+                SELECT c.*
                     FROM ".TBL_REL_USUARIO_CLIENTE." uc
-                    JOIN ".TBL_CLIENTE." c
-                        WHERE uc.idUsuario = ".$objCliente->getIdCliente()."
-                        GROUP BY c.idCliente
+                    JOIN ".TBL_USUARIO." u ON u.idUsuario = uc.idUsuario
+                    JOIN ".TBL_CLIENTE." c ON c.idCliente = uc.idCliente
+                        where uc.idusuario = ".$objUsuarioCliente->getIdUsuario()."
                ";
 
         $banco = $conexao->query($sql);

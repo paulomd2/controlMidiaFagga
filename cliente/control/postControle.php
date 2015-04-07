@@ -1,19 +1,13 @@
 <?php
 
 @session_start();
+require_once '../../model/banco.php';
 require_once '../model/comentarioDAO.php';
 require_once '../model/postDAO.php';
 @include_once '../include/funcoes.php';
-/*
-  $acao = $_GET['acao'];
 
-  $idPost = $_REQUEST['idPost'];
-  $idUsuario = $_POST['idUsuario'];
-
-  $data = $_POST['data'];
-  $texto = $_POST['texto'];
- */
-$opcao = $_POST['opcao'];
+echo 'cdosfcvjasdjkl';
+echo $opcao = $_POST['opcao'];
 switch ($opcao) {
     case 'cadComentario':
         $comentario = $_POST['comentario'];
@@ -30,6 +24,7 @@ switch ($opcao) {
         break;
 
     case 'cadPost':
+        echo 'aqui';
         $data = $_POST['data'];
         $texto = $_POST['texto'];
         $idUsuario = $_SESSION['codigoAR'];
@@ -138,7 +133,7 @@ function uploadImagem() {
     if ($_FILES['foto']['size'] > (1048576)) { //não pode ser maior que 1Mb
         $valido = false;
     } else {
-        @$imagemAntiga = '../upload/' . $_POST["imagemAntiga"];
+        @$imagemAntiga = '../../upload/' . $_POST["imagemAntiga"];
 
         if (!file_exists('../upload/')) {
             mkdir('../upload/');

@@ -20,8 +20,8 @@ if ($_SESSION["codigoAR"] == '' || !($_SESSION["nivel"] != '2' || $_SESSION["niv
             <article>
                 <?php
                 require_once 'model/ClientesDao.php';
-                $objCliente->setIdCliente($_SESSION['codigoAR']);
-                $clientes = $objClienteDao->listaClientes($objCliente);
+                $objUsuarioCliente->setIdUsuario($_SESSION['codigoAR']);
+                $clientes = $objClienteDao->listaClientes($objUsuarioCliente);
 
                 foreach ($clientes as $cliente) {
                     echo '<div style="float:left">

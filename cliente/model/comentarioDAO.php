@@ -1,6 +1,5 @@
 <?php
 require_once 'bean/comentario.php';
-require_once 'model/banco.php';
 
 class ComentarioDAO extends Banco{
     public function listaComentarios($idPost){

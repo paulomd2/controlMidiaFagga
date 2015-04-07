@@ -22,7 +22,8 @@ if ($_SESSION["codigoAR"] == '') {
     <body>
         <?php include_once '../include/header.php' ?>
         <div class="main">
-            <form method="post" id="frmCadPost" action="control/postControle.php?opcao=cadPost" class="cad-post" enctype="multipart/form-data" >
+            <form method="post" id="frmCadPost" action="control/postControle.php" class="cad-post" enctype="multipart/form-data" >
+                
                 <input type="hidden" value="cadPost" name="opcao" />
                 <fieldset>
                     <h2>DATA</h2>

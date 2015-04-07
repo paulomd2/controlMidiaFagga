@@ -12,6 +12,11 @@ function altCliente(id) {
 
     
 }
-$(document).ready(function () {
 
-});
+$(document).ready(function(){
+    $("#selClientes").change(function(){
+        var id = $("#selClientes").val();
+        
+        altCliente(id);
+    })
+})

@@ -11,6 +11,7 @@ if ($_SESSION["codigoAR"] == '') {
         <title>Baby Beauty</title>
         <?php include_once '../include/head.php'; ?>
         <script src="js/posts.js"></script>
+        <script src="js/clientes.js"></script>
     </head>
     <body>
         <?php

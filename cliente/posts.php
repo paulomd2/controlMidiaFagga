@@ -10,7 +10,7 @@ foreach ($posts as $post):
     ?>
     <div class="ipost">
         <div class="imagem">
-            <figure><img src="upload/<?php echo $post['imagem']; ?>" alt=""/></figure>
+            <figure><img src="../upload/<?php echo $post['imagem']; ?>" alt=""/></figure>
             <!--<a href="#" class="btn">Alterar Imagem</a>-->
             <?php if ($_SESSION['nivel'] == 1 && ($post['aprovacao_data'] == '' || $post['aprovacao_data'] == '0000-00-00 00:00:00')): ?>
                 <form action="control/postControle.php" id="frmAltImagem" method="post" enctype="multipart/form-data">
@@ -33,18 +33,21 @@ foreach ($posts as $post):
             </p>
             <p>
                 <?php
-                if ($_SESSION['nivel'] == 1) {
-                    echo "<a href='editar.php?idPost=" . $post['idPost'] . "' class='btn'>Editar</a>";
-                    echo "<a href='javascript:delPost(" . $post['idPost'] . ")' class='btn'>Excluir</a>";
-                    $estilo = "";
-                } else {
-                    $estilo = 'style="padding: 8px 0!important"';
-                }
+                $estilo = 'style="padding: 8px 0!important"';
+                if ($_SESSION['nivel'] == 2) {
+                    if ($post['aprovacao_data'] != '' && $post['aprovacao_data'] != '0000-00-00 00:00:00') {
+                        echo "<span " . $estilo . " class='btn aprovado'>POST APROVADO <i class='icon icon-checkmark'></i></span>";
+                    } else {
 
-                if ($post['aprovacao_data'] == '' || $post['aprovacao_data'] == '0000-00-00 00:00:00') {
-                    echo "<a href='javascript:aprovaPost(" . $post['idPost'] . ")' class='btn aprovar'>APROVAR POST</a>";
+                        echo "<a href='editar.php?idPost=" . $post['idPost'] . "' class='btn'>Editar</a>";
+                        echo "<a href='javascript:delPost(" . $post['idPost'] . ")' class='btn'>Excluir</a>";
+                    }
                 } else {
-                    echo "<span ".$estilo." class='btn aprovado'>POST APROVADO <i class='icon icon-checkmark'></i></span>";
+                    if ($post['aprovacao_data'] == '' || $post['aprovacao_data'] == '0000-00-00 00:00:00') {
+                        echo "<a href='javascript:aprovaPost(" . $post['idPost'] . ")' class='btn aprovar'>APROVAR POST</a>";
+                    } else {
+                        echo "<span " . $estilo . " class='btn aprovado'>POST APROVADO <i class='icon icon-checkmark'></i></span>";
+                    }
                 }
                 ?>
             </p>
