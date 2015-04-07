@@ -1,9 +1,7 @@
 <?php
-
-session_start();
-require_once '../include/funcoes.php';
+@session_start();
 require_once '../model/usuarioDAO.php';
-require_once '../model/usuarioClienteDAO.php';
+//require_once '../model/usuarioClienteDAO.php';
 
 $opcao = $_POST['opcao'];
 switch ($opcao) {
@@ -20,6 +18,7 @@ switch ($opcao) {
         if ($resposta != 0) {
             $_SESSION["codigoAR"] = $resposta['idUsuario'];
             $_SESSION['nivel'] = $resposta['nivel'];
+            $_SESSION['cliente'] = '';
             $objUsuario->setIdUsuario($resposta['idUsuario']);
 
             //se o nível for administrador, o usuário será direcionado para
@@ -35,12 +34,12 @@ switch ($opcao) {
                     //se o usuário só tiver um cliente
                     //redireciona para a página de posts
 
-                    $retorno = 'principal.php';
+                    $retorno = 'cliente/principal.php';
                 } else {
                     //se o usuário tiver mais de um cliente
                     //redireciona para a página de clientes
 
-                    $retorno = 'clientes.php';
+                    $retorno = 'cliente/clientes.php';
                 }
             }
         }
